@@ -1,0 +1,3 @@
+aws_region   = "us-east-1"
+repo_url     = "https://github.com/Lesly031104/hola-mundo"
+github_token = "PEGA_AQUI_TU_TOKEN"
