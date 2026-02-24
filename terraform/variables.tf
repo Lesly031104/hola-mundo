@@ -1,16 +1,22 @@
 variable "aws_region" {
-  description = "Región de AWS"
   type        = string
-  default     = "us-east-1"
+  description = "Región AWS"
+  default     = "us-east-2"
 }
 
-variable "github_token" {
-  description = "Token personal de GitHub (PAT)"
+variable "app_name" {
   type        = string
-  sensitive   = true
+  description = "Nombre de la app en Amplify"
+  default     = "hola-mundo-vite"
 }
 
 variable "repo_url" {
-  description = "URL HTTPS del repositorio de GitHub"
   type        = string
+  description = "URL HTTPS del repositorio de GitHub"
+}
+
+variable "github_token" {
+  type        = string
+  description = "Token personal de GitHub (PAT)"
+  sensitive   = true
 }

@@ -12,28 +12,28 @@ provider "aws" {
 }
 
 resource "aws_amplify_app" "hola_mundo" {
-  name        = "hola-mundo-vite"
-  repository  = var.repo_url
+  name       = var.app_name
+  repository = var.repo_url
   oauth_token = var.github_token
 
   build_spec = <<-EOT
-version: 1
-frontend:
-  phases:
-    preBuild:
-      commands:
-        - npm ci
-    build:
-      commands:
-        - npm run build
-  artifacts:
-    baseDirectory: dist
-    files:
-      - '**/*'
-  cache:
-    paths:
-      - node_modules/**/*
-EOT
+    version: 1
+    frontend:
+      phases:
+        preBuild:
+          commands:
+            - npm ci
+        build:
+          commands:
+            - npm run build
+      artifacts:
+        baseDirectory: dist
+        files:
+          - '**/*'
+      cache:
+        paths:
+          - node_modules/**/*
+  EOT
 
   custom_rule {
     source = "/<*>"
@@ -45,4 +45,6 @@ EOT
 resource "aws_amplify_branch" "main" {
   app_id      = aws_amplify_app.hola_mundo.id
   branch_name = "main"
+
+  enable_auto_build = true
 }
