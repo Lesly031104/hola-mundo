@@ -16,7 +16,12 @@ resource "aws_amplify_app" "hola_mundo" {
   repository  = var.repo_url
   oauth_token = var.github_token
 
-build_spec = <<-EOT
+  environment_variables = {
+    AMPLIFY_MONOREPO_APP_ROOT = "hola-mundo"
+    NODE_VERSION              = "18"
+  }
+
+  build_spec = <<-EOT
 version: 1
 frontend:
   phases:
@@ -35,11 +40,11 @@ frontend:
       - node_modules/**/*
 EOT
 
-custom_rule {
-  source = "</^((?!\\.).)*$/>"
-  target = "/index.html"
-  status = "200"
-}
+  custom_rule {
+    source = "</^((?!\\.).)*$/>"
+    target = "/index.html"
+    status = "200"
+  }
 }
 
 resource "aws_amplify_branch" "main" {
@@ -47,4 +52,8 @@ resource "aws_amplify_branch" "main" {
   branch_name = "main"
 
   enable_auto_build = true
+
+  environment_variables = {
+    AMPLIFY_MONOREPO_APP_ROOT = "hola-mundo"
+  }
 }
