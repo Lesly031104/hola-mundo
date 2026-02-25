@@ -1,4 +1,0 @@
-repo_url     = "https://github.com/Lesly031104/hola-mundo.git"
-github_token = "PEGATU_TOKEN_AQUI"
-aws_region   = "us-east-2"
-app_name     = "hola-mundo-vite"

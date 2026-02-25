@@ -22,15 +22,16 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-<<<<<<< HEAD
 
-# Terraform
+# Terraform (NO subir)
 .terraform/
 *.tfstate
 *.tfstate.*
+terraform.tfvars
+crash.log
+crash.*.log
 .terraform.lock.hcl
 
-# (opcional) logs/OS
-.DS_Store
-=======
->>>>>>> 5d061ebac737acaf77f8615178359faffabf756e
+# Node
+node_modules/
+dist/

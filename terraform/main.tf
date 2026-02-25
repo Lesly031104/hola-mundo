@@ -12,34 +12,34 @@ provider "aws" {
 }
 
 resource "aws_amplify_app" "hola_mundo" {
-  name       = var.app_name
-  repository = var.repo_url
+  name        = var.app_name
+  repository  = var.repo_url
   oauth_token = var.github_token
 
-  build_spec = <<-EOT
-    version: 1
-    frontend:
-      phases:
-        preBuild:
-          commands:
-            - npm ci
-        build:
-          commands:
-            - npm run build
-      artifacts:
-        baseDirectory: dist
-        files:
-          - '**/*'
-      cache:
-        paths:
-          - node_modules/**/*
-  EOT
+build_spec = <<-EOT
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - npm ci
+    build:
+      commands:
+        - npm run build
+  artifacts:
+    baseDirectory: dist
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - node_modules/**/*
+EOT
 
-  custom_rule {
-    source = "/<*>"
-    target = "/index.html"
-    status = "200"
-  }
+custom_rule {
+  source = "</^((?!\\.).)*$/>"
+  target = "/index.html"
+  status = "200"
+}
 }
 
 resource "aws_amplify_branch" "main" {
